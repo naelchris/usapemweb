@@ -8,11 +8,15 @@ use App\product;
 class ProductController extends Controller
 {
     public function index(){
-
+        $product = product::all();
+        return view('admin.products.index',['products'=>$product]);
+       
     }
+
     public function create(){
         return view('admin.products.create'); 
     }
+
     public function store(Request $request ){
         //logic untuk form
         
@@ -50,9 +54,24 @@ class ProductController extends Controller
 
 
         //session 
-
+        $request->session()->flash('msg','Your product has been added');
         //redirect 
         return redirect('products/create');
+    }
+    public function show(){
+
+    }
+    public function destroy($id){
+        //destroy product database
+        Product::destroy($id);
+
+        //session
+        session()->flash('msg','your item has been deleted');
+
+        //redirect
+        return redirect('products');
+
+
     }
    
 }
