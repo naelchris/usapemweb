@@ -22,6 +22,7 @@
                         <th>Name</th>
                         <th>Price</th>
                         <th>Desc</th>
+                        <th>Category</th>
                         <th>Image</th>
                         <th>Actions</th>
                     </tr>
@@ -33,7 +34,8 @@
                               <td>{{$item->name}}</td>
                               <td>{{$item->price}}</td>
                               <td>{{$item->description}}</td>
-                              <td><img src="uploads/{{$item->image}}" alt="" class="img-thumbnail"
+                              <td>{{$item->category}}</td>
+                              <td><img src="../uploads/{{$item->image}}" alt="" class="img-thumbnail"
                                  style="width: 50px"></td>
                         <td>
 

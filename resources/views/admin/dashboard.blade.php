@@ -1,3 +1,4 @@
+
 @extends('admin.layouts.master')
 
 @section('page')
@@ -43,14 +44,14 @@
                                     <div class="col-xs-7">
                                         <div class="numbers">
                                             <p>Products</p>
-                                            $1,345
+                                            {{$product_total}}
                                         </div>
                                     </div>
                                 </div>
                                 <div class="footer">
                                     <hr/>
                                     <div class="stats">
-                                        <i class="ti-panel"></i> Details
+                                        <a href="/admin/products"> <i class="ti-panel"></i> Details</a>
                                     </div>
                                 </div>
                             </div>
@@ -68,14 +69,15 @@
                                     <div class="col-xs-7">
                                         <div class="numbers">
                                             <p>Orders</p>
-                                            23
+                                            {{$orders}}
                                         </div>
                                     </div>
                                 </div>
                                 <div class="footer">
                                     <hr/>
                                     <div class="stats">
-                                        <i class="ti-panel"></i> Details
+                                        <a href="admin/orders"><i class="ti-panel"></i> Details</a>
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -93,18 +95,29 @@
                                     <div class="col-xs-7">
                                         <div class="numbers">
                                             <p>Users</p>
-                                            45
+                                            {{$users}}
                                         </div>
                                     </div>
                                 </div>
                                 <div class="footer">
                                     <hr/>
                                     <div class="stats">
-                                        <i class="ti-panel"></i> Details
+                                        <a href="admin/users"><i class="ti-panel"></i> Details</a>
+                                        
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                    <div class="content" >
+                        <div class="row">
+                            <div class="col-sm-12">
+                                {!! $chart->container() !!}
+
+                            </div>
+                        </div>
+                    </div>
+                    {!! $chart->script() !!}
+</div>
+
 @endsection

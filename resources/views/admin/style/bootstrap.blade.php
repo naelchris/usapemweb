@@ -11,3 +11,4 @@
 <link href="{{url('assets/css/themify-icons.css')}}" rel="stylesheet">
 
 <link href="{{url('assets/css/image.css')}}" rel="stylesheet">
+

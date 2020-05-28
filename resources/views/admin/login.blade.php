@@ -59,7 +59,7 @@
     <div class="container-lg containerlogin">
         <!-- As a link -->
         <nav class="navbar navbar-expand-lg navbar-light" style="background-color: white;">
-            <a class="navbar-brand" href="#">Navbar</a>
+            <a class="navbar-brand" href="#">Admin Login</a>
         </nav>
         <!-- <a href="https://www.freepik.com/free-photos-vectors/design">Design vector created by stories - www.freepik.com</a>max-width: 608px; -->
         <div class="row" style="margin:0;">
@@ -67,15 +67,15 @@
                 <img src="{{url('assets/img/3647007.jpg')}}" class="img-fluid p-5" alt="" >
             </div>
             <div class="container formlogin col-lg-6 p-5" style="margin:auto;">
-                <form>
-                    <div class="form-group">
+                <form method="POST" action="/postlogin">
+                    {{ csrf_field() }}
+                    <div class="form-group" >
                       <label for="formGroupExampleInput"><i class="fas fa-envelope"></i> Email</label>
-                      <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Please Input your Email">
-                      
+                      <input type="text" name="email" class="form-control" id="formGroupExampleInput" placeholder="Please Input your Email">
                     </div>
                     <div class="form-group">
                       <label for="formGroupExampleInput2"><i class="fas fa-lock"></i> Password</label>
-                      <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Please Input your Password">
+                      <input type="password" name="password" class="form-control" id="formGroupExampleInput2" placeholder="Please Input your Password">
                     </div>
                     <div style="text-align: center;">
                         <button type="submit" class="btn btn-primary mt-2" style="letter-spacing: 0.25em;border-radius: 20px;">Submit</button>
