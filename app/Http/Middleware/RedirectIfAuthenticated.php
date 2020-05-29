@@ -23,6 +23,12 @@ class RedirectIfAuthenticated
                 if(Auth::guard($guard)->check()){
                     return redirect('/admin');
                 }
+            break;
+            case 'user':
+                if(Auth::guard($guard)->check()){
+                    return redirect('/');
+                }
+            break;
         }
 
        

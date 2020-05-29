@@ -31,6 +31,7 @@ class DashboardController extends Controller
         $chart->dataset('total Item yang di order berdasarkan tanggal', 'line',$order->values());
 
         return view('admin.dashboard',['orders'=>$orders,'product_total'=>$product_total,'users'=>$users, 'chart' => $chart]);
+       
     }
 }
 

@@ -43,22 +43,29 @@ Route::prefix('admin')->group(function(){
     Route::get('/show/{id}','OrderController@show')->name('orders.show');
 
     //Users
-    Route::resource('/users','UserController');
+    Route::resource('/users','UserListController');
 
 
     //logout
     Route::get('/logout','AdminUserController@logout');
     });
 
-
-    
-
     // Admin login
     Route::get('/login','AdminUserController@index');
     Route::post('/login','AdminUserController@store');
 });
 
+/*
+    fornt end
+*/
 
-// Auth::routes();
+Route::get('/','Front\HomeController@index');
+Route::get('/categories','CategoriesController@index');
 
-// Route::get('/home', 'DashboardController@index')->name('admin.dashboard');
+
+//login user
+Route::get('/login', 'Front\UserController@index');
+Route::post('/loginPost', 'Front\UserController@loginPost');
+Route::get('/register', 'Front\UserController@register');
+Route::post('/registerPost', 'Front\UserController@registerPost');
+Route::get('/logout', 'Front\UserController@logout');

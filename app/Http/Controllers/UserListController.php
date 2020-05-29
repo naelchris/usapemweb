@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\user;
 use PHPUnit\Framework\Constraint\FileExists;
 
-class UserController extends Controller
+class UserListController extends Controller
 {
     public function index(){
         $user = user::all();
@@ -38,7 +38,7 @@ class UserController extends Controller
         session()->flash('msg','your item has been deleted');
 
         //redirect
-        return redirect('users');
+        return redirect('/admin/users');
     }
 
     public function show($id){
