@@ -107,9 +107,7 @@ class ProductController extends Controller
 
         //redirecting
         return redirect('admin/products');
-        
-
-        
+      
     }
 
     public function destroy($id){
@@ -125,8 +123,6 @@ class ProductController extends Controller
 
         //redirect
         return redirect('admin/products');
-
-
     }
 
     public function show($id){

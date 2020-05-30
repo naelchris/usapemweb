@@ -65,7 +65,7 @@
         <!-- <a href="https://www.freepik.com/free-photos-vectors/design">Design vector created by stories - www.freepik.com</a>max-width: 608px; -->
         <div class="row" style="margin:0;">
             <div class="container formlogin col-lg-8 p-5" style="margin:auto;">
-                <form action="/registerPost" method="post">
+                <form action="/registerPost" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
                         <label for="formGroupExampleInput"><i class="fas fa-user"></i> Name</label>

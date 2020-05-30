@@ -70,6 +70,10 @@ Route::get('/register', 'Front\UserController@register');
 Route::post('/registerPost', 'Front\UserController@registerPost');
 Route::get('/logout', 'Front\UserController@logout');
 
+//user update profile
+Route::get('/edit','Front\UserController@update_view');
+Route::post('/edit','Front\UserController@update');
+
 
 // user cart
 // Route::middleware('auth:user')->group(function() {
@@ -82,3 +86,8 @@ Route::post('/cart/remove/{id}','Front\CartController@destroy')->name('cart.remo
 Route::get('empty',function(){
     Cart::instance('default')->destroy();
 });
+
+//pages
+Route::get('/apple','Front\PageController@apple');
+Route::get('/dell','Front\PageController@dell');
+Route::get('/microsoft','Front\PageController@microsoft');

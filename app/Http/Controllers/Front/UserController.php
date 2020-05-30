@@ -12,7 +12,7 @@ class UserController extends Controller
     //
     public function __construct()
     {
-        $this->middleware('guest:user')->except('logout');
+        $this->middleware('guest:user')->except(['logout','update_view','update']);
     }
 
 
@@ -67,6 +67,7 @@ class UserController extends Controller
         $user->address = $request->address;
         $user->gender = $request->gender;
         $user->email = $request->email;
+        $user->image = "placeholder.webp";
         $user->password = bcrypt($request->password);
 
         $user->save();
@@ -84,5 +85,56 @@ class UserController extends Controller
     public function logout(){
         auth()->guard('user')->logout();
         return redirect('/');
+    }
+
+    public function update_view(){
+        return view('front.auth.profileEdit');
+    }
+
+    public function update(Request $request){
+       //find id
+       $id = Auth::guard('user')->user()->id;
+       $user = User::find($id);
+
+        //validate data
+        $validatedData = $request->validate([
+            'name' => 'required|max:255',
+            'birthdate' => 'required',
+            'address' => 'required|max:255',
+            'gender' => 'required',
+            'password' => 'required|min:8|max:16',
+        ]);
+
+        // if(bcrypt($validatedData['password']) != Auth::guard('user')->user()->password){
+        //     //return with error
+            
+        //     return back()->withErrors('password', 'wrong password');
+        // }
+
+        //update image
+        if($request->hasFile('image')){
+            
+            if(file_exists(public_path('uploads/').$user->image)){
+                unlink(public_path('uploads/').$user->image);
+            }
+
+            $image = $request->profilephoto;
+            $image->move('uploads',$image->getClientOriginalName());
+            $user->image = $request->image->getClientOriginalName(); 
+        }
+
+        $user->update([
+            'name'=>$request->name,
+            'birthdate'=>$request->birthdate,
+            'address'=>$request->address,
+            'gender'=>$request->gender,
+            'image'=>$user->image
+
+        ]);
+
+        //session
+
+        //redirect
+        return redirect('/edit');
     }
 }
