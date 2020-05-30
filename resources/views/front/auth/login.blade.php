@@ -79,6 +79,12 @@
                     <p>Your account has been succesfully created!</p>
                 </div>
             @endif
+
+            @if (Session::has('cart'))
+                <div class="alert alert-warning" role="alert">
+                    <h4 class="alert-heading">{{session('cart')}}</h4>
+                </div>
+            @endif
                 
                 <form action="/loginPost" method="post">
                     @csrf   

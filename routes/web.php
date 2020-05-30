@@ -69,3 +69,16 @@ Route::post('/loginPost', 'Front\UserController@loginPost');
 Route::get('/register', 'Front\UserController@register');
 Route::post('/registerPost', 'Front\UserController@registerPost');
 Route::get('/logout', 'Front\UserController@logout');
+
+
+// user cart
+// Route::middleware('auth:user')->group(function() {
+//     Route::get('/cart','Front\CartController@index');
+// });
+Route::get('/cart','Front\CartController@index');
+Route::post('/cart','Front\CartController@cart');
+Route::post('/cart/remove/{id}','Front\CartController@destroy')->name('cart.remove');
+
+Route::get('empty',function(){
+    Cart::instance('default')->destroy();
+});

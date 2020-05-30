@@ -6,6 +6,7 @@ use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Auth;
 
 class Handler extends ExceptionHandler
 {
@@ -57,13 +58,14 @@ class Handler extends ExceptionHandler
 
     public function unauthenticated($request,AuthenticationException $exception){
         $guard = Arr::get($exception->guards(),0);
-        
         switch($guard){
             case "admin" :
                 return redirect('/admin/login');
             break;
+            case "user":
+                session()->flash('cart','Please Sign In To See Your Cart');
+                return redirect('/login');
+            break;
         }
-
-
     }
 }

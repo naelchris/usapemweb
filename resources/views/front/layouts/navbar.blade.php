@@ -217,6 +217,10 @@
                 <a class="nav-link" href="/categories">Categories</a>
             </li>
 
+            <li class="nav-item">
+                <a class="nav-link" href="/cart">Cart</a>
+            </li>
+
             @if(Auth::guard('user')->check())
                 <li class="nav-item">
                 <a class="nav-link" href="/logout"> logout  </a>

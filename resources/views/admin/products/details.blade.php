@@ -63,7 +63,7 @@
                     
                                                             <tr>
                                                                 <th>Image</th>
-                                                            <td><img src="../uploads/{{$product->image}}" alt="" class="img-thumbnail" style="width: 150px;"></td>
+                                                            <td><img src="{{url('uploads')}}/{{$product->image}}" alt="" class="img-thumbnail" style="width: 150px;"></td>
                                                             </tr>
                     
                                                         </tbody>
