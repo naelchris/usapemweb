@@ -61,7 +61,10 @@ Route::prefix('admin')->group(function(){
 
 Route::get('/','Front\HomeController@index');
 Route::get('/categories','CategoriesController@index');
-
+Route::get('/details/{id}','CategoriesController@details');
+Route::get('/categoriesByPrice','CategoriesController@sortByPrice');
+Route::get('/categoriesByName','CategoriesController@sortByName');
+Route::post('/categoriesSearch','CategoriesController@searchProduct');
 
 //login user
 Route::get('/login', 'Front\UserController@index');
@@ -91,3 +94,10 @@ Route::get('empty',function(){
 Route::get('/apple','Front\PageController@apple');
 Route::get('/dell','Front\PageController@dell');
 Route::get('/microsoft','Front\PageController@microsoft');
+
+
+//Order
+Route::get('/order','Front\CartController@order');
+
+//history
+Route::get('/history','Front\UserController@history');

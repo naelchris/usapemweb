@@ -1,18 +1,22 @@
 <?php
 
 namespace App\Http\Controllers\Front;
+
+use App\History;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Order;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
     //
     public function __construct()
     {
-        $this->middleware('guest:user')->except(['logout','update_view','update']);
+        $this->middleware('guest:user')->except(['logout','update_view','update','history']);
     }
 
 
@@ -23,7 +27,7 @@ class UserController extends Controller
     public function loginPost(Request $request){
         //validation
         $validator = Validator::make($request->all(), [
-            'email' => 'required|max:255',
+            'email' => 'required|max:50',
             'password' => 'required|max:16',
         ]);
         //login
@@ -48,10 +52,10 @@ class UserController extends Controller
     public function registerPost(Request $request){
         //validation
         $validator = Validator::make($request->all(), [
-            'name' => 'required|max:255',
+            'name' => 'required|max:50',
             'birthdate' => 'required',
             'address' => 'required|max:255',
-            'email' => 'required|unique:users|max:255',
+            'email' => 'required|unique:users|max:50',
             'password' => 'required|min:8|max:16',
             'repassword' => 'required|required_with:password|same:password|min:8|max:16',
         ]);
@@ -92,49 +96,57 @@ class UserController extends Controller
     }
 
     public function update(Request $request){
-       //find id
-       $id = Auth::guard('user')->user()->id;
-       $user = User::find($id);
+        //find id
+        $id = Auth::guard('user')->user()->id;
+        $user = User::find($id);
+ 
+         //validate data
+         //validation
+         $validator = Validator::make($request->all(), [
+             'name' => 'required|max:50',
+             'birthdate' => 'required',
+             'address' => 'required|max:255',
+         ]);
+         if ($validator->fails()) {
+             return back()
+                         ->withErrors($validator)
+                         ->withInput();
+         }
+ 
+         // update image
+         if($request->hasFile('profilephoto')){
+ 
+             if(file_exists(public_path('uploads/').$user->image)){
+                 unlink(public_path('uploads/').$user->image);
+             }
+ 
+             $image = $request->profilephoto;
+             $image->move('uploads',$image->getClientOriginalName());
+             $user->image = $request->profilephoto->getClientOriginalName(); 
+         }
+ 
+         $user->update([
+             'name'=>$request->name,
+             'birthdate'=>$request->birthdate,
+             'address'=>$request->address,
+             'gender'=>$request->gender,
+             'image'=>$user->image
+ 
+         ]);
+ 
+         //session
+ 
+         //redirect
+         session()->flash('msg','a');
+         // echo 's';
+         return redirect('/edit');
+     }
 
-        //validate data
-        $validatedData = $request->validate([
-            'name' => 'required|max:255',
-            'birthdate' => 'required',
-            'address' => 'required|max:255',
-            'gender' => 'required',
-            'password' => 'required|min:8|max:16',
-        ]);
-
-        // if(bcrypt($validatedData['password']) != Auth::guard('user')->user()->password){
-        //     //return with error
-            
-        //     return back()->withErrors('password', 'wrong password');
-        // }
-
-        //update image
-        if($request->hasFile('image')){
-            
-            if(file_exists(public_path('uploads/').$user->image)){
-                unlink(public_path('uploads/').$user->image);
-            }
-
-            $image = $request->profilephoto;
-            $image->move('uploads',$image->getClientOriginalName());
-            $user->image = $request->image->getClientOriginalName(); 
-        }
-
-        $user->update([
-            'name'=>$request->name,
-            'birthdate'=>$request->birthdate,
-            'address'=>$request->address,
-            'gender'=>$request->gender,
-            'image'=>$user->image
-
-        ]);
-
-        //session
-
-        //redirect
-        return redirect('/edit');
+    public function history(){
+        //find order
+        // $history = History::find(Auth::guard('user')->user()->id)->get();
+        
+        $history = History::all()->where('user_id',Auth::guard('user')->user()->id);
+        return view('front.pages.history',['order'=>$history]);
     }
 }

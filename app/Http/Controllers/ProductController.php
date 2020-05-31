@@ -26,7 +26,8 @@ class ProductController extends Controller
             'price'=>'required',
             'description'=>'required',
             'category'=>'required',
-            'image'=>'image|required'
+            'image'=>'image|required',
+            'stock'=>'required'
         ]);
         
         
@@ -52,6 +53,7 @@ class ProductController extends Controller
         $product->description = $request->description;
         $product->category = $request->category;
         $product->image = $name;
+        $product->stock = $request->stock;
 
         $product->save();
 
@@ -75,7 +77,8 @@ class ProductController extends Controller
             'name'=>'required',
             'price'=>'required',
             'description'=>'required',
-            'category'=>'required'
+            'category'=>'required',
+            'stock'=>'required'
         ]);
 
         //public_path('uploads/') berguna dapetin path
@@ -98,7 +101,8 @@ class ProductController extends Controller
             'price'=>$request->price,
             'description'=>$request->description,
             'category'=>$request->category,
-            'image'=>$product->image
+            'image'=>$product->image,
+            'stock'=>$request->stock
 
         ]);
 

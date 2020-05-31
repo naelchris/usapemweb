@@ -1,5 +1,7 @@
 @extends('front.layouts.navbar')
-   
+@section('title')
+    Home
+@endsection
 
 @section('content')
 <style>
@@ -189,7 +191,13 @@
 </style>
     <div class="container-xl">
         <div class="containerhome pb-5 pl-5 pr-5">
+            @if (Session::has('msg'))
+        <div class="alert alert-success mt-5" role="alert">
+        <h4 class="alert-heading">{{session('msg')}}</h4>
+    </div>
+    @endif
             <div class="row">
+                
                 <div class="col-lg-6 p-5" style="margin:auto">
                     <p class="home_toptext">Are you looking for a <b>Laptop</b> to buy?</p>
                     <p class="home_bottomtext">This is the right place</p>
@@ -225,7 +233,7 @@
                     <p class="aboutUs2_bottomtext">choose your own laptop from our excellent collection</p>
                 </div>
                 <div class="col-lg-4 rightpicture" >
-                    <img src="home/apple-mac-book-jz7.png" class="img-fluid p-5" alt="" >
+                    <img src="assets/img/home/apple-mac-book-jz7.png" class="img-fluid p-5" alt="" >
                 </div>
             </div>
         </div>
@@ -248,7 +256,9 @@
                             <p><a href="#">Dell XPS 15</a></p>
                             <p><a href="#">Dell XPS 17</a></p>
                         </ul> -->
-                        <button type="button" class="btn btn-lg btn-outline-primary btnshopnow mr-3">Shop Now</button>
+                        <a href="/dell">
+                                                <button type="button" class="btn btn-lg btn-outline-primary btnshopnow mr-3">Shop Now</button>
+                        </a>
                     </div>
                         
                 </div>
@@ -271,7 +281,9 @@
                         <div class="imagecategory" style="background-image: url('assets/img/home/surface.png');">
 
                         </div>
-                        <button type="button" class="btn btn-lg btn-outline-primary btnshopnow mr-3">Shop Now</button>
+                        <a href="/microsoft">
+                                                <button type="button" class="btn btn-lg btn-outline-primary btnshopnow mr-3">Shop Now</button>
+                        </a>
                     </div>
                 </div>
 
@@ -281,7 +293,9 @@
                         <div class="imagecategory" style="background-image: url('assets/img/home/lenovo-laptop-yoga-c940-hero-15_1.webp');">
 
                         </div>
-                        <button type="button" class="btn btn-lg btn-outline-primary btnshopnow mr-3">Shop Now</button>
+                        <a href="/categories">
+                                                <button type="button" class="btn btn-lg btn-outline-primary btnshopnow mr-3">Shop Now</button>
+                        </a>
                     </div>
                 </div>
 

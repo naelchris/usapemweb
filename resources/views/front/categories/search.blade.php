@@ -11,8 +11,13 @@
     <script>
         var key = 0;
     </script>
-    @include('front.layouts.navbar')
+    
     <div class="container">
+        @if (Session::has('msg1'))
+            <div class="alert {{session('msg2')}} mt-5" role="alert">
+                <h4 class="alert-heading">{{session('msg1')}}</h4>
+            </div>
+        @endif
         <div class="row text-center mt-5">
             <div class="row col-lg-8">
                 @foreach ($product as $key => $item)
@@ -40,8 +45,6 @@
                 @endforeach
             </div>
             <div class="col-lg-4">
-                <a href="/categoriesByPrice"><i class="fas fa-sort-numeric-up-alt"></i> Sort by price</a><br>
-                <a href="/categoriesByName"><i class="fas fa-sort-alpha-up"></i> Sort by name</a><br>
                 <div class="choosebrand mt-3">
                     <p class="brandtitle pt-3">Brand</p>
                     <div class="col-lg-8 pb-5" style="margin: auto;text-align: left;">
@@ -110,6 +113,7 @@
             else{
                 $('.category').fadeIn(1000);
             }
+
         }
         function changecategory(brand){
             document.getElementById("lowestprice").value = "";
@@ -132,15 +136,26 @@
 </body>
 </html> --}}
 
+
 @extends('front.layouts.navbar')
 
 @section('title')
-    Product
+Category    
 @endsection
 
 @section('content')
 <link rel="stylesheet" href="front_assets/category/styleCategory.css">
+
+<script>
+    var key = 0;
+</script>
+
 <div class="container">
+    @if (Session::has('msg1'))
+        <div class="alert {{session('msg2')}} mt-5" role="alert">
+            <h4 class="alert-heading">{{session('msg1')}}</h4>
+        </div>
+    @endif
     <div class="row text-center mt-5">
         <div class="row col-lg-8">
             @foreach ($product as $key => $item)
@@ -168,8 +183,6 @@
             @endforeach
         </div>
         <div class="col-lg-4">
-            <a href="/categoriesByPrice"><i class="fas fa-sort-numeric-up-alt"></i> Sort by price</a><br>
-            <a href="/categoriesByName"><i class="fas fa-sort-alpha-up"></i> Sort by name</a><br>
             <div class="choosebrand mt-3">
                 <p class="brandtitle pt-3">Brand</p>
                 <div class="col-lg-8 pb-5" style="margin: auto;text-align: left;">
@@ -238,6 +251,7 @@
         else{
             $('.category').fadeIn(1000);
         }
+
     }
     function changecategory(brand){
         document.getElementById("lowestprice").value = "";
@@ -257,5 +271,5 @@
         $('#shwbtn'+number).hide();
     }
 </script>
-    
+
 @endsection

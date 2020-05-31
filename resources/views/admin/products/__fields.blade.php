@@ -12,11 +12,20 @@
 
 </div>
 
+<div class="form-group {{$errors->has('stock')? 'has-error': ''}}">
+    {{Form::label('stock','Stock')}}
+    {{Form::text('stock','',['class'=>'form-control border-input','placeholder'=>'50'])}}
+    <span class="text-danger">{{$errors->has('stock')?$errors->first('stock'):''}}</span>
+    
+    </div>
+
 <div class="form-group {{$errors->has('description')? 'has-error': ''}}">
 {{Form::label('description','Product Description')}}
 {{Form::textarea('description','',['class'=>'form-control border-input','placeholder'=>'Product Description'])}}
 <span class="text-danger">{{$errors->has('description')?$errors->first('description'):''}}</span>
 </div>
+
+
 
 <div class="form-group {{$errors->has('category')? 'has-error': ''}}">
     {{Form::label('category','Product Category')}}

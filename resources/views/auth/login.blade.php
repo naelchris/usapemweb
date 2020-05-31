@@ -59,7 +59,7 @@
     <div class="container-lg containerlogin">
         <!-- As a link -->
         <nav class="navbar navbar-expand-lg navbar-light" style="background-color: white;">
-            <a class="navbar-brand" href="#">Navbar</a>
+            <a class="navbar-brand" href="#">admin</a>
         </nav>
         <!-- <a href="https://www.freepik.com/free-photos-vectors/design">Design vector created by stories - www.freepik.com</a>max-width: 608px; -->
         <div class="row" style="margin:0;">

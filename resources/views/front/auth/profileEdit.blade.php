@@ -52,49 +52,39 @@
                 </label>
             </div>
             <div class="container formlogin col-lg-6 p-5" style="margin:auto;">
+                @if (Session::has('msg'))
+                <div class="alert alert-success" role="alert">
+                    <h4 class="alert-heading">Profile Updated</h4>
+                    <p>Your profile changes have been saved.</p>
+                </div>
+                @endif
                 <div class="form-group">
                     <label for="formGroupExampleInput"><i class="fas fa-user"></i> Name</label>
-                    <input name="name" value="{{Auth::guard('user')->user()->name}}" type="text" class="form-control @error('name') is-invalid @enderror" id="formGroupExampleInput" placeholder="Harry Potter">
+                    <input name="name" @if($errors->any()) value="{{old('name')}}" @else value="{{Auth::guard('user')->user()->name}}" @endif type="text" class="form-control @error('name') is-invalid @enderror" id="formGroupExampleInput" placeholder="Harry Potter">
                     <div class="invalid-feedback">
                         @error('name') {{$message}} @enderror
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="formGroupExampleInput"><i class="fas fa-birthday-cake"></i> Birthdate</label>
-                    <input name="birthdate" value="{{Auth::guard('user')->user()->birthdate}}" placeholder="31 July, 1980" class="form-control @error('birthdate') is-invalid @enderror" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" id="formGroupExampleInput" />
+                    <input name="birthdate" @if($errors->any()) value="{{old('birthdate')}}" @else value="{{Auth::guard('user')->user()->birthdate}}" @endif placeholder="31 July, 1980" class="form-control @error('birthdate') is-invalid @enderror" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" id="formGroupExampleInput" />
                     <div class="invalid-feedback">
                         @error('birthdate') {{$message}} @enderror
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="formGroupExampleInput"><i class="fas fa-house-user"></i> Address</label>
-                    <input name="address" value="{{Auth::guard('user')->user()->address}}" type="text" class="form-control @error('address') is-invalid @enderror" id="formGroupExampleInput" placeholder="Godric's Hollow, West Country, England, Great Britain">
+                    <textarea row="3" name="address" type="text" class="form-control @error('address') is-invalid @enderror" id="formGroupExampleInput" placeholder="Godric's Hollow, West Country, England, Great Britain">@if($errors->any()){{old('address')}}@else{{Auth::guard('user')->user()->address}}@endif</textarea>
                     <div class="invalid-feedback">
                         @error('address') {{$message}} @enderror
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="inputGender">Gender</label>
+                    <label for="inputGender"><i class="fas fa-venus-mars"></i> Gender</label>
                     <select name="gender" id="inputGender" class="form-control @error('gender') is-invalid @enderror">
-
-                        
-
-                        @if (Auth::guard('user')->user()->gender == 1)
-                            <option value=1>Male</option>
-                           <option value=2>Female</option>
-                        @else
-                            <option value=2>Female</option>
-                            <option value=1>Male</option>
-                        @endif
-
+                        <option value=1>Male</option>
+                        <option value=2>Female</option>
                     </select>
-                </div>
-                <div class="form-group">
-                  <label for="formGroupExampleInput2"><i class="fas fa-lock"></i> Password</label>
-                  <input name="password" value="" type="password" class="form-control @error('password') is-invalid @enderror" id="formGroupExampleInput2" placeholder="********">
-                  <div class="invalid-feedback">
-                        @error('password') {{$message}} @enderror
-                    </div>
                 </div>
 
                 <div style="text-align: center;">
@@ -104,6 +94,12 @@
             </div>
             </div>
         </div>
-    </div> 
+    </div>
+    <script>
+        $(document).ready(function() {
+            @if($errors->any()) document.getElementById("inputGender").value = {{old('gender')}}; @else document.getElementById("inputGender").value = {{Auth::guard('user')->user()->gender}}; @endif
+            
+        });
+    </script>
 </body>
 </html>

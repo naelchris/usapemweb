@@ -27,6 +27,7 @@ class DashboardController extends Controller
 
         $order = OrderItems::orderBy('created_at')->pluck('quantity','created_at'); 
         $chart = new OrderChart;
+        
         $chart->labels($order->keys());
         $chart->dataset('total Item yang di order berdasarkan tanggal', 'line',$order->values());
 

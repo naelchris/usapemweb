@@ -63,7 +63,7 @@ class Handler extends ExceptionHandler
                 return redirect('/admin/login');
             break;
             case "user":
-                session()->flash('cart','Please Sign In To See Your Cart');
+                session()->flash('cart','Login To Start Shopping');
                 return redirect('/login');
             break;
         }

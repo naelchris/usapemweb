@@ -23,19 +23,19 @@
                 <div class="mx-auto">
                     <ul class="navbar-nav">
                         <li class="nav-item pl-2 pr-2">
-                            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item pl-2 pr-2">
-                            <a class="nav-link" href="#">Dell XPS</a>
+                            <a class="nav-link" href="/dell">Dell XPS</a>
                         </li>
                         <li class="nav-item pl-2 pr-2">
-                            <a class="nav-link" href="#">Macbook</a>
+                            <a class="nav-link" href="/apple">Macbook</a>
                         </li>
                         <li class="nav- pl-2 pr-2">
-                            <a class="nav-link" href="#">Surface</a>
+                            <a class="nav-link" href="/microsoft">Surface</a>
                         </li>
                         <li class="nav-item pl-2 pr-2">
-                            <a class="nav-link" href="#">More Products</a>
+                            <a class="nav-link" href="/categories">More Products</a>
                         </li>
                     </ul>
                 </div>

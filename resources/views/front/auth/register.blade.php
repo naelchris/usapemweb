@@ -62,6 +62,35 @@
 </head>
 <body>
     <div class="container-lg containerlogin">
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="navbar-brand">
+            </div>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+    
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <div class="mx-auto">
+                    <ul class="navbar-nav">
+                        <li class="nav-item pl-2 pr-2">
+                            <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item pl-2 pr-2">
+                            <a class="nav-link" href="/dell">Dell XPS</a>
+                        </li>
+                        <li class="nav-item pl-2 pr-2">
+                            <a class="nav-link" href="/apple">Macbook</a>
+                        </li>
+                        <li class="nav- pl-2 pr-2">
+                            <a class="nav-link" href="/microsoft">Surface</a>
+                        </li>
+                        <li class="nav-item pl-2 pr-2">
+                            <a class="nav-link" href="/categories">More Products</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
         <!-- <a href="https://www.freepik.com/free-photos-vectors/design">Design vector created by stories - www.freepik.com</a>max-width: 608px; -->
         <div class="row" style="margin:0;">
             <div class="container formlogin col-lg-8 p-5" style="margin:auto;">
@@ -83,13 +112,15 @@
                     </div>
                     <div class="form-group">
                         <label for="formGroupExampleInput"><i class="fas fa-house-user"></i> Address</label>
-                        <input name="address" value="{{old('address')}}" type="text" class="form-control @error('address') is-invalid @enderror" id="formGroupExampleInput" placeholder="Godric's Hollow, West Country, England, Great Britain">
+                        <textarea row="3" name="address" type="text" class="form-control @error('address') is-invalid @enderror" id="formGroupExampleInput" placeholder="Godric's Hollow, West Country, England, Great Britain">{{old('address')}}</textarea>
                         <div class="invalid-feedback">
                             @error('address') {{$message}} @enderror
                         </div>
                     </div>
+
+
                     <div class="form-group">
-                        <label for="inputGender">Gender</label>
+                        <label for="inputGender"><i class="fas fa-venus-mars"></i> Gender</label>
                         <select name="gender" id="inputGender" class="form-control @error('gender') is-invalid @enderror">
                             <option value=1>Male</option>
                             <option value=2>Female</option>
